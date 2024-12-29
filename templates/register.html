@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register | VulnSocial</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Menú de navegación -->
+            <div class="col-2">
+                <nav class="nav flex-column">
+                    <a class="nav-link" href="../index.php"><img src="../img/logo.svg" alt="logo" class="mb-3" width="40" height="40"></a>
+                    <a class="nav-link" href="../index.php">Home</a>
+                    <a class="nav-link" href="../templates/login.html">Login</a>
+                </nav>
+            </div>
+
+            <!-- Contenido principal dividido -->
+            <div class="col-10 d-flex">
+                <!-- Mitad izquierda con mensaje de bienvenida -->
+                <div class="w-50 d-flex flex-column justify-content-center align-items-center bg-light p-4 border-end">
+                    <h1 class="text-success">Join VulnSocial</h1>
+                    <p class="text-secondary">Create your account and start exploring today!</p>
+                </div>
+
+                <!-- Mitad derecha con el formulario de registro centrado -->
+                <div class="w-50 d-flex justify-content-center align-items-center p-4">
+                    <div>
+                        <h1 class="text-center">Register</h1>
+                        <hr>
+                        <form id="registerForm" enctype="multipart/form-data">
+                            <input type="file" name="media" accept="image/*" class="form-control mt-2" id="avatar">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Register</button>
+                            <div id="registerError" class="text-danger mt-2" style="display:none;"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/register.js"></script>
+</body>
+</html>

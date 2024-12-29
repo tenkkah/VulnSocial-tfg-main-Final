@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    width: 200px; /* Ajusta el ancho según sea necesario */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.btnVerDetalles:hover {
+    transform: translateY(-5px);
+    background-color: green;
+}
+
+h1, h2 {
+    color: #343a40;
+}
+
+h4 {
+    color: #495057;
+}
+
+p {
+    color: #6c757d;
+}
+
+pre {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+/* CSS personalizado */
+.modal-dialog.modal-custom {
+    max-width: 80%; /* Ajusta este valor según el tamaño deseado */
+    margin: auto;
+}
+
+.btnVerRespuestas:hover{
+        transform: translateY(-1px);
+        background-color: green;
+        border-color: #0000;
+    
+}
+
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Fondo claro para contraste */
+}
+
+/* Estilo del contenedor */
+.container {
+    margin-top: 50px;
+}
+
+/* Menú de navegación */
+.nav-link {
+    font-size: 1rem;
+    color: #333;
+}
+
+.nav-link:hover {
+    text-decoration: none;
+    color: #007bff; /* Color azul al pasar por encima */
+}
+
+.nav img {
+    margin-bottom: 10px;
+}
+
+/* Mitad izquierda: mensaje de bienvenida */
+.w-50 {
+    height: 100%;
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.text-success {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.text-secondary {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+/* Mitad derecha: formulario de login */
+.d-flex {
+    height: 100vh;
+}
+
+/* form {
+    max-width: 400px;
+} */
+
+form h1 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+form button:hover {
+    background-color: #0056b3;
+    transition: background-color 0.3s;
+}
+
+
+/* Estilo para los inputs */
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    background-color: #ffffff; /* Fondo blanco */
+    color: #333333;           /* Texto oscuro */
+    border: 1px solid #ced4da; /* Borde gris */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #007bff; /* Borde azul al enfocar */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra azul */
+}
+
+
+/* Estilo para formularios centrados */
+
+
+.titleEditProfile{
+    text-align: center;
+}
+
+
+/**********/
+/* Estilos para los posts */
+.post-card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* Estilos para las respuestas */
+.respuesta-card {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Ajustes de texto */
+.post-card .card-title {
+    color: #495057;
+    font-size: 18px;
+}
+
+.respuesta-card p {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.respuesta-card strong {
+    color: #343a40;
+}
+
+/* Botón para ver respuestas */
+.btnVerRespuestas {
+    background-color: #6c757d;
+    color: #ffffff;
+    border: none;
+}
+
+.btnVerRespuestas:hover {
+    background-color: #5a6268;
+}
+
+/* Contenedor de respuestas */
+.respuestas-container {
+    margin-top: 10px;
+    padding-left: 15px;
+    border-left: 3px solid #dee2e6;
+}
+
+
+.custom-padding{
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 100px;
+
+}
+
+
+/*ASISTENTE CHAT*/
+.autocomplete-container {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 10;
+    display: none;
+    width: 40%;
+}
+
+.autocomplete-item {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.autocomplete-item:hover {
+    background-color: #f0f0f0;
+}
+
+.hashtag-item{
+    background-color: #007bff;
+    font-size: 0.7em; 
+    color: #fff; 
+    display: inline-block; 
+    padding: 6px 12px; 
+    border-radius: 20px; 
+    margin: 5px; 
+    font-family: 'Arial', sans-serif; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hashtag-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+/*****/
+.hashtags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+    margin-top: 10px;
+    margin-left: auto; /* Moverlo a la derecha */
+    margin-top: 15px;
+}
+
+
+.hashtag-item {
+    font-size: 0.8em;
+    color: #fff;
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin: 5px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+/*PAGINACION*/
+#paginationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    gap: 10px; /* Espacio entre los botones */
+}
+
+#paginationContainer button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#paginationContainer button.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+#paginationContainer button.btn-secondary {
+    background-color: #e0e0e0;
+    color: black;
+}
+
+#paginationContainer button:hover {
+    background-color: #0056b3;
+    color: white;
+}
