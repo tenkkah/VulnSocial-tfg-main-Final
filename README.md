@@ -23,7 +23,7 @@ VulnSocial es una aplicación web diseñada como parte de un Trabajo de Fin de G
 
 2. **Configuración del entorno:**
    - Sistema operativo: Windows, macOS o Linux.
-   - Conexión a Internet para las dependencias externas y la API de Hugging Face.
+   - Conexión a Internet para las dependencias externas.
 
 ---
 
