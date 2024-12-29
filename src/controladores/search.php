@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include "../../config/config.php"; // Incluye la conexión a la base de datos
+    include "../../config/config.php"; 
 
 try {
     $outgoing_id = $_SESSION['id'];
@@ -17,8 +17,8 @@ try {
     
     $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-    header('Content-Type: application/json'); // Especificar el tipo de contenido
-    echo json_encode($usuarios); // Devolver como JSON
+    header('Content-Type: application/json');
+    echo json_encode($usuarios); 
     
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();

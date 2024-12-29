@@ -1,11 +1,10 @@
 document.getElementById('registerForm').addEventListener('submit', async function (e) {
-    e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+    e.preventDefault();
 
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    const avatar = document.getElementById('avatar').files[0]; // Obtener el archivo seleccionado
-    console.log(avatar);
+    const avatar = document.getElementById('avatar').files[0];
 
     // Validaciones del lado del cliente
     const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/; // Al menos 3 caracteres, alfanuméricos o guiones bajos
@@ -37,7 +36,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
             valid = false;
             errorMessage += 'El avatar debe ser una imagen (jpg, jpeg, png o gif).\n';
         }
-        if (avatar.size > 2 * 1024 * 1024) { // Máximo 2 MB
+        if (avatar.size > 2 * 1024 * 1024) { 
             valid = false;
             errorMessage += 'El avatar no debe superar los 2 MB.\n';
         }
@@ -63,7 +62,6 @@ document.getElementById('registerForm').addEventListener('submit', async functio
         });
 
         const data = await response.json();
-        console.log(data);
         if (data.success) {
             // Redirigir al login.html si el registro es exitoso
             window.location.href = 'login.html';

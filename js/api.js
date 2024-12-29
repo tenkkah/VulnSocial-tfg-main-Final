@@ -16,7 +16,6 @@ async function verifyUrl() {
 
 // Función que realiza la solicitud a VirusTotal API
 async function checkUrl(url) {
-    // const encodedUrl = encodeUrl(url);  // Codifica la URL en base64
     const endpoint = `https://www.virustotal.com/api/v3/urls`;
 
     try {
@@ -46,8 +45,8 @@ async function checkUrl(url) {
     }
 }
 
+//Se hace la segunda peticion porque en la API se tienen que hacer 2 llamadas
 async function getAnalisisUrl(urlId){
-    console.log(urlId);
     const analisisEndpoint = `https://www.virustotal.com/api/v3/analyses/${urlId}`;
     try{
         const response = await fetch(analisisEndpoint, {
@@ -63,10 +62,6 @@ async function getAnalisisUrl(urlId){
         }
 
         const data = await response.json();
-        console.log(data.data);
-        console.log(data.data.attributes);
-
-        console.log(data.data.attributes.results);
         displayResults(data);
     }catch(error){
         console.error(error);
@@ -75,7 +70,6 @@ async function getAnalisisUrl(urlId){
     }
 }
 
-// Función para mostrar los resultados de los motores de análisis
 // Función para obtener y mostrar los resultados
 function displayResults(data) {
     const resultContainer = document.getElementById('resultContainer');

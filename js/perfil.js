@@ -1,20 +1,17 @@
 async function obtenerPerfilYPosts(userId) {
     try {
-        // Obtener los datos del usuario
         const userResponse = await fetch(`../src/controladores/chat.php?id=${userId}`);
         if (!userResponse.ok) {
             throw new Error("Error al obtener los datos del usuario.");
         }
 
         const user = await userResponse.json();
-        console.log(user);
 
         if (user.error) {
             document.getElementById('userInfo').innerHTML = `<p>${user.error}</p>`;
             return;
         }
 
-        // Mostrar la información del usuario en el HTML
         const userInfoHtml = `
             <img src="../avatar/${user.avatar}" class="profile-pic" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #ccc; margin-bottom: 10px;">
             <h1>${user.username}</h1>
@@ -22,17 +19,15 @@ async function obtenerPerfilYPosts(userId) {
         `;
         document.getElementById('userInfo').innerHTML = userInfoHtml;
 
-        // Obtener los posts del usuario
         const postsResponse = await fetch(`../src/controladores/chat.php?action=obtenerPosts&id=${userId}`);
         if (!postsResponse.ok) {
             throw new Error("Error al obtener los posts del usuario.");
         }
 
         const posts = await postsResponse.json();
-        console.log(posts);
 
-        const postsContainer = document.getElementById('userPosts'); // Contenedor donde se mostrarán los posts
-        postsContainer.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevos posts
+        const postsContainer = document.getElementById('userPosts'); 
+        postsContainer.innerHTML = ''; 
 
         // Verificar si no hay posts
         if (posts.length === 0) {
@@ -46,8 +41,6 @@ async function obtenerPerfilYPosts(userId) {
 
         // Recorrer los posts obtenidos
         posts.forEach(post => {
-            const contentHtml = post.body ? `<p class="card-text">${post.body}</p>` : ''; // Contenido del post
-
             // Determinar si el post tiene medios (imagen o video)
             let mediaHtml = '';
             if (post.media_path && post.media_path.trim() !== '') {

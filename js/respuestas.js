@@ -8,10 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // Función para cargar usuarios
-
-
-    // Llamar a la función para cargar los usuarios al cargar la página
     cargarRespuestas();
 });
 
@@ -46,21 +42,15 @@ async function mostrarRespuestas() {
 
     async function cargarRespuestas() {
         try {
-            // Realizar la petición con fetch y await
             const response = await fetch('../src/controladores/respuestasAdmin.php?action=listaRespuestas');
-            console.log(response);
-            // Verificar si la respuesta es correcta
             if (!response.ok) {
                 throw new Error(`Error: ${response.status}`);
             }
 
-            // Convertir la respuesta a JSON
             const data = await response.json();
-            console.log(data);
 
-            // Obtener el tbody de la tabla
             const tbody = document.querySelector('#respuestasTable tbody');
-            tbody.innerHTML = ''; // Limpiar el contenido del tbody
+            tbody.innerHTML = ''; 
 
             // Verificar si no hay usuarios
             if (data.length === 0) {
@@ -69,7 +59,6 @@ async function mostrarRespuestas() {
                 tbody.appendChild(fila);
                 return;
             }
-            // Recorrer los usuarios y agregarlos a la tabla
             data.forEach(respuesta => {
                 const fila = document.createElement('tr');
                 fila.innerHTML = `
@@ -86,7 +75,6 @@ async function mostrarRespuestas() {
         } catch (error) {
             console.error('Error al cargar los usuarios:', error);
 
-            // Mostrar mensaje de error en la tabla
             const tbody = document.querySelector('#usuariosTable tbody');
             tbody.innerHTML = '';
             const fila = document.createElement('tr');
@@ -97,7 +85,6 @@ async function mostrarRespuestas() {
 
 //Funciona pero tengo que ver el metodo para llamar al mostrar usuarios
 async function eliminarRespuesta(respuestaId) {
-    // Mostrar el diálogo de confirmación
     const result = await Swal.fire({
         title: '¿Estás seguro?',
         text: "¡No podrás recuperar esta respuesta después de eliminarlo!",
@@ -109,7 +96,6 @@ async function eliminarRespuesta(respuestaId) {
         cancelButtonText: 'Cancelar'
     });
 
-    // Si el usuario confirma, procede a eliminar el usuario
     if (result.isConfirmed) {
         try {
             const response = await fetch('../src/controladores/respuestasAdmin.php?action=eliminarRespuesta', {
@@ -122,7 +108,6 @@ async function eliminarRespuesta(respuestaId) {
 
             const result = await response.json();
             if (result.success) {
-                // Mostrar mensaje de éxito
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "bottom-end",
@@ -138,10 +123,8 @@ async function eliminarRespuesta(respuestaId) {
                     icon: "success",
                     title: "Respuesta eliminada"
                   });
-                // Actualiza la lista de posts
-                mostrarRespuestas(); // Asume que tienes una función para recargar los posts
+                mostrarRespuestas();
             } else {
-                // Mostrar mensaje de error
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "bottom-end",
@@ -181,7 +164,6 @@ async function eliminarRespuesta(respuestaId) {
 
 async function editarRespuesta(id) {
     try {
-        // Obtener los datos de la respuesta seleccionada
         const response = await fetch(`../src/controladores/respuestasAdmin.php?action=obtenerRespuesta&id=${id}`);
         if (!response.ok) {
             throw new Error('Error al obtener los datos de la respuesta');
@@ -219,7 +201,6 @@ document.getElementById('saveChanges').addEventListener('click', async function 
     const respuesta = document.getElementById("editRespuesta").value;
     const fecha = document.getElementById("editFecha").value;
 
-    // Preparar datos a enviar
     const datos = {
         id,
         post_id,
@@ -229,7 +210,6 @@ document.getElementById('saveChanges').addEventListener('click', async function 
     };
 
     try {
-        // Enviar los datos actualizados al servidor
         const response = await fetch('../src/controladores/respuestasAdmin.php?action=actualizarRespuesta', {
             method: 'POST',
             headers: {
@@ -257,7 +237,6 @@ document.getElementById('saveChanges').addEventListener('click', async function 
             icon: "success",
             title: "El post ha sido editado"
           });
-            // myModal.hide();
             const postModal = new bootstrap.Modal(document.getElementById('editPostModal'));
 
             mostrarRespuestas(); // Recarga la lista de posts

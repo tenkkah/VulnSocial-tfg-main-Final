@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "../../config/config.php"; // Incluye la conexión a la base de datos
+include_once "../../config/config.php"; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
     } else {
         // Si falla, devolver un error
-        echo json_encode(["success" => false, "message" => "Invalid email or password"]);
+        echo json_encode(["success" => false, "message" => "Email o contraseña incorrecta"]);
     }
 }
 ?>

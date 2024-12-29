@@ -8,10 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // Función para cargar usuarios
-
-
-    // Llamar a la función para cargar los usuarios al cargar la página
     cargarUsuarios();
 });
 
@@ -22,18 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // Realizar la petición con fetch y await
             const response = await fetch('../src/controladores/usuarios.php?action=listaUsuarios');
             
-            // Verificar si la respuesta es correcta
             if (!response.ok) {
                 throw new Error(`Error: ${response.status}`);
             }
 
-            // Convertir la respuesta a JSON
             const data = await response.json();
-            console.log(data);
 
-            // Obtener el tbody de la tabla
             const tbody = document.querySelector('#usuariosTable tbody');
-            tbody.innerHTML = ''; // Limpiar el contenido del tbody
+            tbody.innerHTML = ''; 
 
             // Verificar si no hay usuarios
             if (data.length === 0) {
@@ -42,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 tbody.appendChild(fila);
                 return;
             }
-            // Recorrer los usuarios y agregarlos a la tabla
             data.forEach(usuario => {
                 const fila = document.createElement('tr');
                 fila.innerHTML = `
@@ -59,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error('Error al cargar los usuarios:', error);
 
-            // Mostrar mensaje de error en la tabla
             const tbody = document.querySelector('#usuariosTable tbody');
             tbody.innerHTML = '';
             const fila = document.createElement('tr');
@@ -70,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //Funciona pero tengo que ver el metodo para llamar al mostrar usuarios
 async function eliminarUsuario(usuarioId) {
-    // Mostrar el diálogo de confirmación
     const result = await Swal.fire({
         title: '¿Estás seguro?',
         text: "¡No podrás recuperar este post después de eliminarlo!",
@@ -82,7 +71,6 @@ async function eliminarUsuario(usuarioId) {
         cancelButtonText: 'Cancelar'
     });
 
-    // Si el usuario confirma, procede a eliminar el usuario
     if (result.isConfirmed) {
         try {
             const response = await fetch('../src/controladores/deleteUsuario.php', {
@@ -94,9 +82,7 @@ async function eliminarUsuario(usuarioId) {
             });
 
             const result = await response.json();
-            console.log(result);
             if (result.success) {
-                // Mostrar mensaje de éxito
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "bottom-end",
@@ -112,10 +98,8 @@ async function eliminarUsuario(usuarioId) {
                     icon: "success",
                     title: "El usuario ha sido eliminado"
                   });
-                // Actualiza la lista de posts
-                cargarUsuarios(); // Asume que tienes una función para recargar los posts
+                cargarUsuarios(); 
             } else {
-                // Mostrar mensaje de error
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "bottom-end",
@@ -155,25 +139,19 @@ async function eliminarUsuario(usuarioId) {
 
 async function editarUsuario(id) {
     try {
-        // Obtener los datos del usuario seleccionado
         const response = await fetch(`../src/controladores/usuarios.php?action=obtenerUsuario&id=${id}`);
         if (!response.ok) {
             throw new Error('Error al obtener los datos del usuario');
         }
         const usuario = await response.json();
-        console.log(usuario);
 
-        // Rellenar los campos del formulario en el modal con los datos del usuario
         document.getElementById('editId').value = usuario.id;
-        console.log(usuario.id);
         document.getElementById('editUsername').value = usuario.username;
         document.getElementById('editEmail').value = usuario.email;
         document.getElementById("editPassword").value = usuario.password;
         document.getElementById('editAdmin').value = usuario.admin;
 
-        // Mostrar el modal
         const editUserModal = new bootstrap.Modal(document.getElementById('editUserModal'));
-        console.log(editUserModal);
         editUserModal.show();
     } catch (error) {
         console.error('Error al cargar los datos del usuario:', error);
@@ -183,7 +161,6 @@ async function editarUsuario(id) {
 
 const myModal = new bootstrap.Modal(document.getElementById('editUserModal'));
 
-// Evento para guardar cambios al hacer clic en el botón "Guardar Cambios"
 document.getElementById('saveChanges').addEventListener('click', async function () {
     const id = document.getElementById('editId').value;
     const username = document.getElementById('editUsername').value;
@@ -191,7 +168,6 @@ document.getElementById('saveChanges').addEventListener('click', async function 
     const password = document.getElementById("editPassword").value;
     const admin = document.getElementById('editAdmin').value;
 
-    // Preparar datos a enviar
     const datos = {
         id,
         username,
@@ -201,7 +177,6 @@ document.getElementById('saveChanges').addEventListener('click', async function 
     };
 
     try {
-        // Enviar los datos actualizados al servidor
         const response = await fetch('../src/controladores/usuarios.php?action=actualizarUsuario', {
             method: 'POST',
             headers: {
@@ -212,7 +187,6 @@ document.getElementById('saveChanges').addEventListener('click', async function 
 
         const result = await response.json();
         if (result.success) {
-            //Cierra el modal 
             document.querySelector('button#cerrar').click();            
             const Toast = Swal.mixin({
                 toast: true,

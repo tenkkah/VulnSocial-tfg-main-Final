@@ -13,7 +13,6 @@ searchIcon.onclick = () => {
   }
 };
 
-// Función para obtener usuarios desde el servidor
 async function fetchUsuarios(searchTerm = "") {
   try {
     let url = "../src/controladores/usuarios.php?action=usuariosParaChat";
@@ -65,7 +64,6 @@ async function fetchUsuarios(searchTerm = "") {
 // Manejo de la búsqueda
 searchBar.onkeyup = () => {
   const searchTerm = searchBar.value.trim();
-  console.log(searchTerm);
   if (searchTerm !== "") {
     searchBar.classList.add("active");
     fetchUsuarios(searchTerm); // Buscar usuarios

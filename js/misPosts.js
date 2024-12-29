@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 headers: { 'Content-Type': 'application/json' },
             });
             const result = await response.json();
-            console.log(result);
 
             // Obtener los posts que el usuario ha "likado"
             likedPostIds = result.likedPosts.map(post => post.id);
@@ -139,11 +138,10 @@ document.addEventListener("DOMContentLoaded", function () {
 // Función para obtener los posts del usuario
 async function obtenerPostsUsuario() {
     try {
-        const response = await fetch(`../src/controladores/getUserPosts.php`);  // Ahora no es necesario enviar el userId
+        const response = await fetch(`../src/controladores/getUserPosts.php`); 
         const data = await response.json();
     
 
-        console.log(data);
         return data;
     } catch (error) {
         console.error('Error al obtener los posts:', error);
@@ -154,8 +152,8 @@ async function obtenerPostsUsuario() {
 async function mostrarMisPosts() {
     // Obtener los posts del usuario desde el backend
     const posts = await obtenerPostsUsuario();
-    const postsContainer = document.getElementById('misPostsContainer');  // Contenedor donde se mostrarán los posts
-    postsContainer.innerHTML = '';  // Limpiar el contenedor antes de agregar nuevos posts
+    const postsContainer = document.getElementById('misPostsContainer');  
+    postsContainer.innerHTML = ''; 
 
     // Verificar si no hay posts
     if (posts.length === 0) {
@@ -197,7 +195,7 @@ async function mostrarMisPosts() {
             </div>
         ` : '';
 
-        // Crear el HTML de cada post
+        
         const postCard = `
             <div class="card rounded mt-3 post-card" id="post_${post.id}">
                 <div class="card-body">
@@ -255,7 +253,6 @@ async function eliminarPost(postId) {
             });
 
             const result = await response.json();
-            console.log(result);
             if (result.success) {
                 // Mostrar mensaje de éxito
                 const Toast = Swal.mixin({
@@ -295,6 +292,4 @@ async function eliminarPost(postId) {
 }
 
 
-
-// Llamar a la función para cargar los posts cuando la página se haya cargado
 document.addEventListener('DOMContentLoaded', mostrarMisPosts);

@@ -4,7 +4,6 @@ async function obtenerListaTotal(page = 1, limit = 5) {
         const response = await fetch(`src/controladores/posts.php?action=listaPosts&page=${page}&limit=${limit}`);
         if (!response.ok) throw new Error('Error en la solicitud');
         const data = await response.json();
-        console.log(data);
         return data;
     } catch (error) {
         console.error('Error en la solicitud:', error);
@@ -13,14 +12,12 @@ async function obtenerListaTotal(page = 1, limit = 5) {
 
 async function mostrarPosts(page = 1, limit = 5) {
     const postsData = await obtenerListaTotal(page, limit);
-    console.log(postsData);
     const postsContainer = document.getElementById('postsContainer');
     const paginationContainer = document.getElementById('paginationContainer'); // Contenedor de paginación
 
-    postsContainer.innerHTML = ''; // Limpiar los posts
-    paginationContainer.innerHTML = ''; // Limpiar la paginación
+    postsContainer.innerHTML = ''; 
+    paginationContainer.innerHTML = ''; 
 
-        // Obtener el usuario logueado (si existe) de forma segura
         let loggedUser = null;
         const loggedUserRaw = localStorage.getItem("loggedUser");
         if (loggedUserRaw) {
@@ -147,7 +144,7 @@ async function toggleLike(postId) {
 
         // Actualizar el conteo de likes
         if (likesCount) {
-            likesCount.innerText = result.likes; // Actualizar con el nuevo total
+            likesCount.innerText = result.likes; 
         }
     }
 }
@@ -237,7 +234,6 @@ async function agregarRespuesta(postId, userId, content) {
                 icon: "success",
                 title: "Respuesta añadida"
               });
-            // Recargar o actualizar las respuestas del post
             mostrarPosts();
         } else {
             const Toast = Swal.mixin({
@@ -280,8 +276,8 @@ $('#postForm').on('submit', function (e) {
         url: 'src/controladores/createPost.php',
         method: 'POST',
         data: formData,
-        contentType: false, // Necesario para enviar datos de FormData
-        processData: false, // Necesario para enviar datos de FormData
+        contentType: false, 
+        processData: false, 
         success: function (response) {
             const postResponse = JSON.parse(response);
             if (postResponse.success) {
@@ -300,9 +296,9 @@ $('#postForm').on('submit', function (e) {
                     icon: "success",
                     title: "Post creado"
                   });
-                $('#post').val(''); // Limpiar el campo de texto del post
-                $('input[name="media"]').val(''); // Limpiar el campo de archivo
-                mostrarPosts(); // Recargar los posts
+                $('#post').val('');
+                $('input[name="media"]').val(''); 
+                mostrarPosts(); 
             } else {
                 const Toast = Swal.mixin({
                     toast: true,

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../../config/config.php"; // Incluye la conexión a la base de datos
+include "../../config/config.php"; 
 
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -50,7 +50,6 @@ try {
             
             
               elseif (isset($_GET['id'])) {
-                // Obtener el ID del post
                 $userId = $_GET['id'];
 
                 $sql = "SELECT * FROM posts WHERE id = ?";
@@ -108,7 +107,7 @@ try {
                         "message" => "No hay respuestas para este post."
                     ]);
                 }
-                exit(); // Detener la ejecución del script
+                exit(); 
             }
         }            
     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {

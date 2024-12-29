@@ -1,11 +1,10 @@
 function submitForm(event) {
-  event.preventDefault(); // Evita el envío normal del formulario
+  event.preventDefault();
 
-  // Obtener valores del formulario
   const username = document.getElementById("username").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-  const profilePicture = document.getElementById("profile_picture").files[0]; // Obtener la imagen de perfil
+  const profilePicture = document.getElementById("profile_picture").files[0]; 
 
   // Crear un objeto FormData con los valores del formulario
   const formData = new FormData();
@@ -16,7 +15,6 @@ function submitForm(event) {
       formData.append("profile_picture", profilePicture); // Agregar la imagen si existe
   }
 
-  // Enviar la petición usando fetch
   fetch("../src/controladores/procesarEdicionPerfil.php", {
       method: "POST",
       body: formData

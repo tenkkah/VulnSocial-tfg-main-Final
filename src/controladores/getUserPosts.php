@@ -1,7 +1,7 @@
 <?php
-session_start();  // Asegúrate de iniciar la sesión
+session_start(); 
 
-include "../../config/config.php";  // Conexión a la base de datos
+include "../../config/config.php";  
 
 // Verificar si el ID de usuario está en la sesión
 if (isset($_SESSION['id'])) {
@@ -13,7 +13,7 @@ if (isset($_SESSION['id'])) {
     $stmt->execute();
     
     $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode($posts);  // Devolver los posts en formato JSON
+    echo json_encode($posts); 
 
     
 } else {

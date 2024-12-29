@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../../config/config.php"; // Incluye la conexión a la base de datos
+include "../../config/config.php"; 
 
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {

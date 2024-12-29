@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../../config/config.php"; // Incluye la conexión a la base de datos
+include "../../config/config.php"; 
 
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -12,11 +12,9 @@ try {
                 $stmt->execute();
                 $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                // Devolver los datos en formato JSON
                 echo json_encode($usuarios);
 
             } elseif ($_GET['action'] === 'obtenerUsuario' && isset($_GET['id'])) {
-                // Obtener el ID del usuario
                 $userId = $_GET['id'];
 
                 // Consulta para obtener un solo usuario
@@ -69,7 +67,6 @@ try {
         }
     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_GET['action']) && $_GET['action'] === 'actualizarUsuario') {
-            // Obtener los datos de la solicitud
             $data = json_decode(file_get_contents('php://input'), true);
 
             // Verificar que los datos estén completos
@@ -92,13 +89,11 @@ try {
                     echo json_encode(["success" => false, "message" => "Error al actualizar el usuario"]);
                 }
             } else {
-                // Datos faltantes
                 echo json_encode(["success" => false, "message" => "Datos incompletos"]);
             }
         } 
     }
 } catch (PDOException $e) {
-    // En caso de error, devolver un mensaje de error en JSON
     echo json_encode(["error" => $e->getMessage()]);
 }
 ?>

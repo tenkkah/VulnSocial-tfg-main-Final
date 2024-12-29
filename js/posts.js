@@ -9,26 +9,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        // Llamada a la API para obtener la lista de posts
         const response = await fetch('../src/controladores/postsAdmin.php?action=listaPosts');
         if (!response.ok) {
             throw new Error('Error al cargar los posts');
         }
 
         const posts = await response.json();
-        console.log(posts); // Para verificar que los datos se están recibiendo correctamente
 
         const tbody = document.getElementById("postsBody");
         
-        // Verifica que tbody se ha encontrado
         if (!tbody) {
             throw new Error('No se pudo encontrar el tbody');
         }
 
-        // Limpiar el tbody antes de añadir nuevos datos
         tbody.innerHTML = '';
 
-        // Recorrer los posts y agregarlos a la tabla
         posts.forEach(post => {
             const fila = document.createElement('tr');
             fila.innerHTML = `
@@ -79,9 +74,7 @@ async function mostrarPosts() {
 
 
 
-//Funciona pero tengo que ver el metodo para llamar al mostrar posts
 async function eliminarPost(postId) {
-    // Mostrar el diálogo de confirmación
     const result = await Swal.fire({
         title: '¿Estás seguro?',
         text: "¡No podrás recuperar este post después de eliminarlo!",
@@ -106,7 +99,6 @@ async function eliminarPost(postId) {
 
             const result = await response.json();
             if (result.success) {
-                // Mostrar mensaje de éxito
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "bottom-end",
@@ -123,9 +115,8 @@ async function eliminarPost(postId) {
                     title: "El post ha sido eliminado"
                   });
                 // Actualiza la lista de posts
-                mostrarPosts(); // Asume que tienes una función para recargar los posts
+                mostrarPosts();
             } else {
-                // Mostrar mensaje de error
                 Swal.fire(
                     'Error!',
                     result.message,
@@ -150,7 +141,6 @@ async function editarPost(id) {
             throw new Error('Error al obtener los datos del post');
         }
         const post = await response.json();
-        console.log(post);
         // Rellenar los campos del formulario en el modal con los datos del post
         document.getElementById('editPostId').value = post.id;
         document.getElementById('editPostContent').value = post.content;
@@ -216,7 +206,7 @@ document.getElementById('savePostChanges').addEventListener('click', async funct
             title: "El post ha sido editado"
           });
             postModal.hide();
-            mostrarPosts(); // Recarga la lista de posts
+            mostrarPosts(); 
         } else {
             const Toast = Swal.mixin({
                 toast: true,

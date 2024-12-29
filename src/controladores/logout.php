@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "../../config/config.php"; // Incluye la conexión a la base de datos
+include_once "../../config/config.php"; 
 
 if (isset($_SESSION['id'])) {
     try {

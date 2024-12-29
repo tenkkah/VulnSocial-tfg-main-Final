@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../config/config.php'; // Conexión a la base de datos
+include '../../config/config.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents("php://input"), true);
@@ -74,7 +74,7 @@ if (isset($_GET['likedPosts']) && $_GET['likedPosts'] === 'true') {
     ";
     $stmt = $pdo->prepare($query);
     $stmt->execute([$userId]);
-    $likedPosts = $stmt->fetchAll(PDO::FETCH_ASSOC); // Cambié $stmt->fetch_all() a fetchAll()
+    $likedPosts = $stmt->fetchAll(PDO::FETCH_ASSOC); 
 
     echo json_encode(['success' => true, 'likedPosts' => $likedPosts]);
     exit;

@@ -1,11 +1,11 @@
 <?php
 session_start();
-include "../../config/config.php"; // Incluye la conexión a la base de datos
+include "../../config/config.php"; 
 
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Verifica si se ha pasado el ID del post a eliminar
-        $data = json_decode(file_get_contents('php://input'), true); // Obtiene el cuerpo de la solicitud
+        $data = json_decode(file_get_contents('php://input'), true); 
 
         if (isset($data['id'])) {
             $postId = (int)$data['id'];

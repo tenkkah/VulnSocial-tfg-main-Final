@@ -1,5 +1,5 @@
 <?php
-include "../../config/config.php"; // Conexión a la base de datos
+include "../../config/config.php"; 
 
 // Verificar si se proporciona un ID de usuario
 if (!isset($_GET['id']) || empty($_GET['id'])) {

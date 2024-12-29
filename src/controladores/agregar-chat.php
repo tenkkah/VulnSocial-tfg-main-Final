@@ -12,7 +12,6 @@ if (isset($_SESSION['id'])) {
     // Obtenemos el ID del usuario emisor (outgoing) desde la sesión
     $outgoing_id = $_SESSION['id'];
 
-    // Obtenemos los datos del POST
     $incoming_id = isset($_POST['incoming_id']) ? trim($_POST['incoming_id']) : null;
     $message = isset($_POST['message']) ? trim($_POST['message']) : null;
 
