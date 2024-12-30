@@ -1,91 +1,99 @@
 document.addEventListener("DOMContentLoaded", function () {
     let likedPostIds = []; // Array para almacenar los IDs de los posts que el usuario ha "likado"
 
-    // Cargar los posts con "Me gusta"
-    async function cargarLikesPosts() {
-        try {
-            const response = await fetch('../src/controladores/likes.php?likedPosts=true', {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' },
-            });
-            const result = await response.json();
+// Cargar los posts con "Me gusta"
+async function cargarLikesPosts() {
+    try {
+        const response = await fetch('../src/controladores/likes.php?likedPosts=true', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
+        const result = await response.json();
 
-            // Obtener los posts que el usuario ha "likado"
-            likedPostIds = result.likedPosts.map(post => post.id);
+        // Obtener los posts que el usuario ha "likado"
+        likedPostIds = result.likedPosts.map(post => post.id);
 
-            const likesContainer = document.getElementById('likesPostsContainer');
-            likesContainer.innerHTML = '';
+        const likesContainer = document.getElementById('likesPostsContainer');
+        likesContainer.innerHTML = '';
 
-            if (!result.likedPosts || result.likedPosts.length === 0) {
-                likesContainer.innerHTML = `
-                    <div class="alert alert-info mt-3" role="alert">
-                        No has dado "Me gusta" a ningún post aún.
-                    </div>
-                `;
-                return;
-            }
+        if (!result.likedPosts || result.likedPosts.length === 0) {
+            likesContainer.innerHTML = `
+                <div class="alert alert-info mt-3" role="alert">
+                    No has dado "Me gusta" a ningún post aún.
+                </div>
+            `;
+            return;
+        }
 
-            result.likedPosts.forEach(post => {
-                const userAvatar = post.avatar
-                    ? `<img src="../avatar/${post.avatar}" alt="Avatar de ${post.username}" class="user-avatar" style="width: 50px; height: 50px; border-radius: 50%;">`
-                    : `<img src="../img/default-avatar.png" alt="Avatar por defecto" class="user-avatar" style="width: 50px; height: 50px; border-radius: 50%;">`;
+        result.likedPosts.forEach(post => {
+            const userAvatar = post.avatar
+                ? `<img src="../avatar/${post.avatar}" alt="Avatar de ${post.username}" class="user-avatar" style="width: 60px; height: 60px; border-radius: 50%;">`
+                : `<img src="../img/default-avatar.png" alt="Avatar por defecto" class="user-avatar" style="width: 50px; height: 50px; border-radius: 50%;">`;
 
-                // Aquí verificamos si el post está en likedPostIds para cambiar el color del corazón
-                const likeButtonHtml = `
-                    <button id="likeBtn_${post.id}" class="btn btn-outline-none like-btn" style="background: none; border: none; display: flex; align-items: center; gap: 5px;">
-                        <i id="icon_${post.id}" class="fa${likedPostIds.includes(post.id) ? 's' : 'r'} fa-heart" style="font-size: 24px; color: ${likedPostIds.includes(post.id) ? 'red' : 'gray'};"></i>
-                        <span id="likeCount_${post.id}" class="likes-count">${post.likes}</span>
-                    </button>
-                `;
+            // Aquí verificamos si el post está en likedPostIds para cambiar el color del corazón
+            const likeButtonHtml = `
+                <button id="likeBtn_${post.id}" class="btn btn-outline-none like-btn" style="background: none; border: none; display: flex; align-items: center; gap: 5px;">
+                    <i id="icon_${post.id}" class="fa${likedPostIds.includes(post.id) ? 's' : 'r'} fa-heart" style="font-size: 24px; color: ${likedPostIds.includes(post.id) ? 'red' : 'gray'};"></i>
+                    <span id="likeCount_${post.id}" class="likes-count">${post.likes}</span>
+                </button>
+            `;
 
-                const mediaHtml = post.media_path ? generarMediaHtml(post.media_path) : '';
-                const hashtagsHtml = (JSON.parse(post.hashtags || "[]"))
-                    .map(hashtag => `<div class="hashtag-item">${hashtag}</div>`).join('');
+            const mediaHtml = post.media_path ? generarMediaHtml(post.media_path) : '';
+            const hashtagsHtml = (JSON.parse(post.hashtags || "[]"))
+                .map(hashtag => `<div class="hashtag-item">${hashtag}</div>`).join('');
 
-                const postCard = `
-                    <div class="card rounded mt-3 post-card" id="post_${post.id}">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                ${userAvatar}
-                                <p class="username-link" style="display: inline-block; margin-left: 10px;">${post.username}</p>
-                            </h5>
-                            <h6 class="card-subtitle mb-2 text-muted">${new Date(post.fecha).toLocaleString()}</h6>
-                            <p class="card-text">${post.content}</p>
+            const postCard = `
+                <div class="card rounded mt-3 post-card" id="post_${post.id}">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            ${userAvatar}
+                            <p class="username-link" style="display: inline-block; margin-left: 10px;">${post.username}</p>
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">${new Date(post.fecha).toLocaleString()}</h6>
+                        <p class="card-text">${post.content}</p>
+                        <div class="media-container" style="max-width: 300px; max-height: 200px; overflow: hidden; border-radius: 10px;">
                             ${mediaHtml}
-                            ${likeButtonHtml}
-                            <div class="hashtags-container mt-2">${hashtagsHtml}</div>
                         </div>
+                        ${likeButtonHtml}
+                        <div class="hashtags-container mt-2">${hashtagsHtml}</div>
                     </div>
-                `;
-                likesContainer.innerHTML += postCard;
-            });
+                </div>
+            `;
+            likesContainer.innerHTML += postCard;
+        });
 
-            asignarEventosLike();
-        } catch (error) {
-            console.error("Error al cargar los likes:", error);
-        }
+        asignarEventosLike();
+    } catch (error) {
+        console.error("Error al cargar los likes:", error);
     }
+}
 
-    // Llamar a la función al cargar la página
-    cargarLikesPosts();
+// Generar HTML para medios (imágenes o videos)
+function generarMediaHtml(mediaPath) {
+    const extension = mediaPath.split('.').pop().toLowerCase();
 
-    function generarMediaHtml(mediaPath) {
-        // Suponiendo que el path es una URL de imagen o video
-        const extension = mediaPath.split('.').pop().toLowerCase();
-    
-        if (['jpg', 'jpeg', 'png', 'gif'].includes(extension)) {
-            // Si el archivo es una imagen, genera un HTML para mostrarla
-            return `<img src="../uploads/${mediaPath}" alt="Media" class="post-media" style="max-width: 100%; height: auto;">`;
-        } else if (['mp4', 'webm', 'ogg'].includes(extension)) {
-            // Si el archivo es un video, genera un HTML para mostrarlo
-            return `<video controls class="post-media" style="max-width: 100%; height: auto;">
-                        <source src="../uploads/${mediaPath}" type="video/${extension}">
-                        Your browser does not support the video tag.
-                    </video>`;
-        }
-        // Si no es una imagen ni un video, simplemente no mostrar nada
-        return '';
+    if (['jpg', 'jpeg', 'png', 'gif'].includes(extension)) {
+        // Si es una imagen, envuélvela en un div contenedor con estilos ajustados
+        return `
+            <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                <img src="../uploads/${mediaPath}" alt="Media" class="post-media" style="width: 100%; height: auto; object-fit: contain;">
+            </div>`;
+    } else if (['mp4', 'webm', 'ogg'].includes(extension)) {
+        // Si es un video, también agregar el div padre
+        return `
+            <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                <video controls class="post-media" style="width: 100%; height: auto; object-fit: contain;">
+                    <source src="../uploads/${mediaPath}" type="video/${extension}">
+                    Tu navegador no soporta el video.
+                </video>
+            </div>`;
     }
+    return '';
+}
+
+// Llamar a la función al cargar la página
+cargarLikesPosts();
+
     
 
     // Función para alternar "Me gusta" (igual que antes)
@@ -176,11 +184,12 @@ async function mostrarMisPosts() {
             
             if (['jpg', 'jpeg', 'png', 'gif'].includes(extension)) {
                 // Es una imagen
-                mediaHtml = `<img src="../uploads/${post.media_path}" alt="Media del post" class="img-fluid mt-2" style="width: 100%; max-width: 400px; height: auto;">`;
+                mediaHtml = `<img src="../uploads/${post.media_path}" alt="Media del post" class="img-fluid mt-2" style="width: 250px; height: auto;">`;
+
             } else if (['mp4', 'webm', 'ogg'].includes(extension)) {
                 // Es un video
                 mediaHtml = `  
-                    <video controls class="mt-2" style="width: 100%; max-width: 400px; height: auto;">
+                    <video controls class="mt-2" style="width: 250px; height: auto;">
                         <source src="../uploads/${post.media_path}" type="video/${extension}">
                         Tu navegador no soporta la reproducción de video.
                     </video>`;
@@ -253,6 +262,7 @@ async function eliminarPost(postId) {
             });
 
             const result = await response.json();
+            console.log(result);
             if (result.success) {
                 // Mostrar mensaje de éxito
                 const Toast = Swal.mixin({
