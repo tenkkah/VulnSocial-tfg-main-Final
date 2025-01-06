@@ -9,7 +9,6 @@ VulnSocial es una aplicación web diseñada como parte de un Trabajo de Fin de G
 - **Funcionalidades de red social:** Registro, login, creación de posts, likes, comentarios y chat.
 - **Panel de administración:** Gestión de usuarios, estadísticas y gráficos interactivos para el administrador y el manager.
 - **Vulnerabilidades controladas:** Simulación de vulnerabilidades como XSS, SQL Injection y CSRF, entre otras.
-- **Asistente de IA:** Evaluación de sentimientos en los posts utilizando la API de Hugging Face.
 - **Enfoque educativo:** Diseño para enseñar buenas prácticas de desarrollo seguro.
 
 ---
