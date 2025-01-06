@@ -316,6 +316,9 @@
     <p>Después de enviar el formulario, observamos cómo se ejecuta el código en la página:</p>
     <img src="../img/xss2.png" alt="Ejecución del XSS" class="img-fluid mb-3">
     <p>El script inyectado genera una alerta en el navegador, lo que demuestra que el sistema no está protegiendo adecuadamente contra XSS. En este caso vamos a parsear el código para poder renderizarlo en la web y poder hacer uso del XSS</p>
+    <pre><code>
+        &lt;a href="" onmousedown="var name = '&#39;;alert(1)//'; alert('Hacking you')"&gt;Link&lt;/a&gt;
+    </code></pre>
     <img src="../img/xss3.png" alt="Ejecución del XSS" class="img-fluid mb-3">
     <h3>Mitigación</h3>
     <p>Para resolver esta vulnerabilidad, se deben implementar las siguientes medidas:</p>
@@ -362,7 +365,7 @@
                             <img src="../img/lf2.png" width="1200px" height="600px"> <br> <br>
 
                             <p>En este caso, tenemos la ruta del inicio, donde se muestran las posts principalmente, como hemos visto anteriormente la ruta donde se alojan las imágenes está en la ruta uploads/. </p>
-                            <img src="../img/lf3.png" width="1200px" height="600px">
+                            <img src="../img/lf3.png" width="1200px" height="600px"> <br> <br>
                             
                             <p>Como se puede ver, se está en un entorno local. Si fuera en un entorno de producción. Se tendría que restringir para los usuarios esta misma ruta para que no se pueda acceder a datos sensibles de otros usuarios, 
                                 o a recursos internos de la propia aplicación. Se va a ejecutar el archivo malicioso que se ha subido en PHP y ver qué sucede. Se ejecuta un alert donde nos está avisando que es un archivo malicioso, tras aceptar el alert,
@@ -376,6 +379,53 @@
                                  <p>Para poder ver mejor como funciona este script, se va a adjuntar el código que se ha planteado: </p>
                                  <p>En este caso para poder subir este código está en la carpeta de <strong>/uploads</strong> para poder subirlo y ver de qué manera funciona.</p>
                                  <img src="../img/lf8.png" width="700px" height="700px"><br><br>
+
+                                 <pre><code>
+                                    &lt;?php
+                                    echo "&lt;!DOCTYPE html&gt;
+                                    &lt;html lang='es'&gt;
+                                    &lt;head&gt;
+                                        &lt;meta charset='UTF-8'&gt;
+                                        &lt;meta name='viewport' content='width=device-width, initial-scale=1.0'&gt;
+                                        &lt;title&gt;Fichero Malicioso&lt;/title&gt;
+                                        &lt;style&gt;
+                                            body {
+                                                background-color: #333;
+                                                color: white;
+                                                font-family: Arial, sans-serif;
+                                                text-align: center;
+                                                padding-top: 50px;
+                                            }
+                                            .warning {
+                                                font-size: 50px;
+                                                font-weight: bold;
+                                                color: red;
+                                            }
+                                            .message {
+                                                font-size: 30px;
+                                                margin-top: 20px;
+                                            }
+                                        &lt;/style&gt;
+                                    &lt;/head&gt;
+                                    &lt;body&gt;
+                                        &lt;div class='warning'&gt;¡CUIDADO! Este archivo podría ser peligroso&lt;/div&gt;
+                                        &lt;div class='message'&gt;
+                                            Esto es un fichero malicioso. &lt;br&gt;El contenido ha sido ejecutado en tu navegador.
+                                        &lt;/div&gt;
+                                        &lt;script&gt;
+                                            // Mostrar un mensaje emergente en el navegador
+                                            alert('¡Alerta! Estás ejecutando un archivo malicioso. No confíes en esta fuente.');
+                                            
+                                            // Redirigir a una página peligrosa
+                                            setTimeout(function() {
+                                                window.location.href = 'https://www.example.com'; // Página de redirección
+                                            }, 5000);
+                                        &lt;/script&gt;
+                                    &lt;/body&gt;
+                                    &lt;/html&gt;";
+                                    ?&gt;
+                                    </code></pre>
+
 
                             <p>Para evitar estas vulnerabilidades mencionadas anteriormente vamos a mejorar este código:</p>
                             <p>1. Validación y sanitización de las rutas en Local File Inclusion (LFI):</p>
