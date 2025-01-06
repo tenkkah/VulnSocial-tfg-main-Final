@@ -31,7 +31,7 @@ VulnSocial es una aplicación web diseñada como parte de un Trabajo de Fin de G
 
 ### Paso 1: Clonar el repositorio
 ```
-git clone https://github.com/tu-usuario/vulnsocial.git
+git clone https://github.com/tenkkah/VulnSocial-tfg-main-Final.git
 ```
 
 O descarga el proyecto como un archivo ZIP desde GitHub y extrae los archivos.
