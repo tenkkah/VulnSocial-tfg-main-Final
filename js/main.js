@@ -181,7 +181,10 @@ async function mostrarRespuestas(postId) {
         } else {
             const respuestasHtml = respuestas.respuestas.map(respuesta => `
                 <div class="respuesta p-2 border rounded mt-2 respuesta-card">
-                    <p><strong>${respuesta.username}</strong>:</p>
+                    <img src="avatar/${respuesta.avatar}" alt="${respuesta.username}'s avatar" class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #ccc; margin-right: 10px;">
+                    <a href="templates/perfil.php?id=${respuesta.user_id}" class="username-link">
+                                ${respuesta.username}
+                            </a> 
                     <p>${respuesta.content}</p>
                     <small class="text-muted">${new Date(respuesta.fecha).toLocaleString()}</small>
                 </div>

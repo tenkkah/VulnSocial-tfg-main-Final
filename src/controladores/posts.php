@@ -86,7 +86,7 @@ try {
                 $post_id = intval($_GET['post_id']); // Asegurarse de que sea un número válido
                 
                 // Consulta para obtener las respuestas asociadas al post
-                $sql = "SELECT r.id, r.content, r.fecha, u.username 
+                $sql = "SELECT r.id,r.user_id, r.content, r.fecha, u.username, u.avatar
                         FROM respuestas r 
                         JOIN users u ON r.user_id = u.id 
                         WHERE r.post_id = ? 

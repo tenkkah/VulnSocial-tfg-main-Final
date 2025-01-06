@@ -262,12 +262,12 @@
                 </ol>
 
                 <p>Como podemos ver en el login podemos acceder mediante email y password</p>
-                <img src="../img/sql1.png" alt="" width="1600px" height="800px">
+                <img src="../img/sql1.png" class="img-fluid mb-3">
                 <p>Vamos a intentar acceder con credenciales</p>
-                <img src="../img/sql2.png" alt="" width="1600px" height="800px"> <br> <br> <br>
+                <img src="../img/sql2.png" class="img-fluid mb-3"> <br> <br> <br>
                 <p>En este caso nos da credenciales erróneas.</p>
                 <p>Vamos a ver que lenguaje se proceso en el backend con una extensión, en este caso se está usando PHP</p>
-                <img src="../img/wappa.png" alt="" width="600px" height="500px"> <br> <br> <br>
+                <img src="../img/wappa.png" class="img-fluid mb-3"> <br> <br> <br>
                 <p>En este caso vamos a intentar acceder como administrador con un SQL Injection de nivel 1.
                 Lo que quiere decir que en una query todos los parámetros que vengan después de el email o username será valido sin saber la password, quedaría la query así:
                 </p>
@@ -276,10 +276,10 @@
                     SELECT * FROM users WHERE email = '' OR '1'='1' AND password = '';
                 </code></pre>
                 <p>Vamos a introducir 'OR '1'='1' tanto en el campo de email como el de la password</p> <br>
-                <img src="../img/sql3.png" alt=""  width="1200px" height="600px">
+                <img src="../img/sql3.png" class="img-fluid mb-3">
                 
                 <p>Una vez introducido, accedemos como admin, ya que normalmente en las aplicaciones. Por defecto el admin suele ser el primer ID asignado en un usuario, sino se cambia</p>
-                <img src="../img/sql4.png" alt="" width="1200px" height="600px">
+                <img src="../img/sql4.png" class="img-fluid mb-3">
 
 
                 <br>
@@ -308,15 +308,15 @@
     <h3>Demostración de la vulnerabilidad</h3>
     <p>En este ejemplo, usaremos la sección de publicaciones para inyectar un script malicioso.</p>
     <p>Primero, accedemos al formulario para crear un nuevo post:</p>
-    <img src="../img/xss1.png" alt="Formulario de creación de post" width="900px" height="600px">
+    <img src="../img/xss1.png" alt="Formulario de creación de post" class="img-fluid mb-3">
     <p>Introducimos el siguiente payload en el campo de texto:</p>
     <pre><code>
         &lt;script&gt;alert(1);&lt;/script&gt;
     </code></pre>
     <p>Después de enviar el formulario, observamos cómo se ejecuta el código en la página:</p>
-    <img src="../img/xss2.png" alt="Ejecución del XSS" width="1200px" height="600px">
+    <img src="../img/xss2.png" alt="Ejecución del XSS" class="img-fluid mb-3">
     <p>El script inyectado genera una alerta en el navegador, lo que demuestra que el sistema no está protegiendo adecuadamente contra XSS. En este caso vamos a parsear el código para poder renderizarlo en la web y poder hacer uso del XSS</p>
-    <img src="../img/xss3.png" alt="Ejecución del XSS" width="1200px" height="600px">
+    <img src="../img/xss3.png" alt="Ejecución del XSS" class="img-fluid mb-3">
     <h3>Mitigación</h3>
     <p>Para resolver esta vulnerabilidad, se deben implementar las siguientes medidas:</p>
     <ul>
