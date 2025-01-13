@@ -9,7 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil del Usuario | VulnSocial</title>
     <link rel="stylesheet" href="../css/styles.css">
-    <link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+    <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>

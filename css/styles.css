@@ -269,10 +269,10 @@ form input:focus {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.hashtag-item:hover {
+/* .hashtag-item:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
+} */
 
 
 /*****/
@@ -297,7 +297,7 @@ form input:focus {
     font-family: 'Arial', sans-serif;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
+    
 }
 
 /*PAGINACION*/
