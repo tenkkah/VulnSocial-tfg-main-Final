@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-01-2025 a las 18:09:33
+-- Tiempo de generación: 16-01-2025 a las 10:42:29
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -53,10 +53,10 @@ INSERT INTO `likes` (`id`, `user_id`, `post_id`) VALUES
 (149, 7, 201),
 (195, 7, 203),
 (197, 7, 204),
+(249, 7, 209),
 (157, 8, 203),
 (219, 8, 204),
 (222, 8, 209),
-(221, 8, 217),
 (159, 9, 204),
 (218, 9, 207),
 (169, 9, 209),
@@ -66,8 +66,7 @@ INSERT INTO `likes` (`id`, `user_id`, `post_id`) VALUES
 (217, 11, 209),
 (216, 11, 215),
 (214, 11, 216),
-(245, 54, 208),
-(243, 54, 217);
+(245, 54, 208);
 
 -- --------------------------------------------------------
 
@@ -152,18 +151,14 @@ INSERT INTO `posts` (`id`, `content`, `user_id`, `fecha`, `hashtags`, `media_pat
 (206, 'Estoy buscando recomendaciones de libros sobre programación, en mi caso recomiendo este de aquí. ¿Alguien tiene algo para recomendar?', 9, '2025-01-09 14:30:00', '[\"#Libros\"]', 'libros.jpg', 1),
 (207, '¿Qué opinan de la última actualización de iOS?', 10, '2025-01-09 15:00:00', '[\"#iOS\"]', 'ios_update.jpg', 2),
 (208, 'Este fin de semana se realiza un evento de tecnología en mi ciudad, ¡no me lo quiero perder!', 8, '2025-01-09 15:30:00', '[\"#EventoTech\"]', NULL, 3),
-(209, '¿Alguien tiene experiencia con el desarrollo de apps móviles en React Native?', 11, '2025-01-09 16:00:00', '[\"#ReactNative\"]', '', 4),
+(209, '¿Alguien tiene experiencia con el desarrollo de apps móviles en React Native?', 11, '2025-01-09 16:00:00', '[\"#ReactNative\"]', '', 5),
 (210, 'Nuevo post sobre ciberseguridad: Siempre actualiza tus sistemas.', 5, '2025-01-05 11:30:00', '[\"#ciberseguridad\"]', '', 2),
 (211, '¿Has probado el nuevo framework para desarrollo web?', 8, '2025-01-06 13:15:00', '[\"#frameworks\"]', NULL, 0),
 (212, '¡El futuro del desarrollo de software está aquí! Aprende con IA.', 9, '2025-01-07 15:45:00', '[\"#desarrolloweb\"]', '', 5),
 (213, '¡El café es lo mejor para programar!', 2, '2025-01-08 08:00:00', '[\"#programacion\"]', NULL, 1),
 (214, 'Un gran artículo sobre la importancia de la seguridad en redes.', 4, '2025-01-09 09:30:00', '[\"#redes\"]', '', 3),
 (215, 'Cómo crear aplicaciones web seguras desde el inicio.', 6, '2025-01-10 12:00:00', '[\"#seguridad\"]', NULL, 2),
-(216, 'Consejos para mejorar la experiencia de usuario en tu sitio web.', 3, '2025-01-11 10:30:00', '[\"#UX\"]', '', 2),
-(217, '¡La programación no tiene fronteras!', 7, '2025-01-12 16:10:00', '[\"#programadores\"]', NULL, 2),
-(221, 'Necesito ayuda para aprender a programar ', 54, '2025-01-13 10:28:42', '[\"#programar\"]', NULL, 0),
-(223, '<a href=\"\" onmousedown=\"var name = \'&;;alert(1)//\'; alert(\'Hacking you\')\">Link</a>', 54, '2025-01-13 10:33:06', '[\"#39\"]', NULL, 0),
-(224, '', 54, '2025-01-13 10:33:40', '[]', 'uploaded_6784ec04a3b30.php', 0);
+(216, 'Consejos para mejorar la experiencia de usuario en tu sitio web.', 3, '2025-01-11 10:30:00', '[\"#UX\"]', '', 2);
 
 -- --------------------------------------------------------
 
@@ -221,7 +216,6 @@ INSERT INTO `respuestas` (`id`, `post_id`, `user_id`, `content`, `fecha`) VALUES
 (1035, 214, 6, 'Es importante concienciar sobre la seguridad en redes.', '2025-01-09 09:00:00'),
 (1036, 215, 2, 'Crear apps seguras desde el inicio es lo ideal.', '2025-01-10 11:30:00'),
 (1037, 216, 8, 'UX es fundamental para retener a los usuarios.', '2025-01-11 10:00:00'),
-(1038, 217, 5, 'Los programadores estamos conectados globalmente.', '2025-01-12 16:00:00'),
 (1039, 208, 7, '¡El evento suena genial! Me encantaría asistir.', '2025-01-09 15:00:00'),
 (1040, 209, 10, 'React Native es genial, pero la curva de aprendizaje puede ser un poco empinada.', '2025-01-09 15:45:00'),
 (1117, 216, 54, 'Tiene que ser una web responsive para mejorar la experiencia del usuario', '2025-01-13 10:28:15');
@@ -346,7 +340,7 @@ ALTER TABLE `vulnerabilities`
 -- AUTO_INCREMENT de la tabla `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
 
 --
 -- AUTO_INCREMENT de la tabla `messages`
